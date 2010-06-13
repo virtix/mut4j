@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/86/trunk/jdbcdslog/src/test/java/org/jdbcdslog
+END
+ConnectionPoolXADataSourceProxyTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/131/trunk/jdbcdslog/src/test/java/org/jdbcdslog/ConnectionPoolXADataSourceProxyTest.java
+END
+ConnectionPoolXADataSourceProxyStressTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/59/trunk/jdbcdslog/src/test/java/org/jdbcdslog/ConnectionPoolXADataSourceProxyStressTest.java
+END
+ConnectionStressTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/59/trunk/jdbcdslog/src/test/java/org/jdbcdslog/ConnectionStressTest.java
+END
+DriverLoggingProxyTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/59/trunk/jdbcdslog/src/test/java/org/jdbcdslog/DriverLoggingProxyTest.java
+END
+ConnectionLoggingProxyTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/86/trunk/jdbcdslog/src/test/java/org/jdbcdslog/ConnectionLoggingProxyTest.java
+END

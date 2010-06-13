@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/105/trunk/jdbcdslog/src/main/java/org/jdbcdslog
+END
+ConnectionPoolXADataSourceProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/124/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ConnectionPoolXADataSourceProxy.java
+END
+ConnectionLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/104/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ConnectionLogger.java
+END
+PreparedStatementLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/122/trunk/jdbcdslog/src/main/java/org/jdbcdslog/PreparedStatementLoggingProxy.java
+END
+XAConnectionLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/59/trunk/jdbcdslog/src/main/java/org/jdbcdslog/XAConnectionLoggingProxy.java
+END
+LogUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/87/trunk/jdbcdslog/src/main/java/org/jdbcdslog/LogUtils.java
+END
+ResultSetLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/104/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ResultSetLoggingProxy.java
+END
+DriverLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/104/trunk/jdbcdslog/src/main/java/org/jdbcdslog/DriverLoggingProxy.java
+END
+StatementLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/104/trunk/jdbcdslog/src/main/java/org/jdbcdslog/StatementLogger.java
+END
+ConnectionPoolDataSourceProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/124/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ConnectionPoolDataSourceProxy.java
+END
+ConnectionLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/87/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ConnectionLoggingProxy.java
+END
+JDBCDSLogException.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/59/trunk/jdbcdslog/src/main/java/org/jdbcdslog/JDBCDSLogException.java
+END
+SlowQueryLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/122/trunk/jdbcdslog/src/main/java/org/jdbcdslog/SlowQueryLogger.java
+END
+PooledConnectionLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/59/trunk/jdbcdslog/src/main/java/org/jdbcdslog/PooledConnectionLoggingProxy.java
+END
+StatementLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/122/trunk/jdbcdslog/src/main/java/org/jdbcdslog/StatementLoggingProxy.java
+END
+GenericLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/105/trunk/jdbcdslog/src/main/java/org/jdbcdslog/GenericLoggingProxy.java
+END
+XADataSourceProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/124/trunk/jdbcdslog/src/main/java/org/jdbcdslog/XADataSourceProxy.java
+END
+DataSourceProxyBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/131/trunk/jdbcdslog/src/main/java/org/jdbcdslog/DataSourceProxyBase.java
+END
+ResultSetLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/104/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ResultSetLogger.java
+END
+ConfigurationParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/133/trunk/jdbcdslog/src/main/java/org/jdbcdslog/ConfigurationParameters.java
+END
+DataSourceProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/124/trunk/jdbcdslog/src/main/java/org/jdbcdslog/DataSourceProxy.java
+END
+CallableStatementLoggingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/122/trunk/jdbcdslog/src/main/java/org/jdbcdslog/CallableStatementLoggingProxy.java
+END
