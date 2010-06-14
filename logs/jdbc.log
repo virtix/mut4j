@@ -1,0 +1,5 @@
+2010-06-13 21:37:18.026 1. Connection.new Connection returned 
+2010-06-13 21:37:18.030 1. Statement.new Statement returned 
+2010-06-13 21:37:18.030 1. Connection.createStatement() returned net.sf.log4jdbc.StatementSpy@57d2fc36
+2010-06-13 21:37:18.037 1. ResultSet.new ResultSet returned 
+2010-06-13 21:37:18.038 1. Statement.executeQuery(select * from example e, example f where e.id=f.id and (id > 0 OR id < 99);) returned net.sf.log4jdbc.ResultSetSpy@351563ff

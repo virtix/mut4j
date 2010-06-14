@@ -1,0 +1,203 @@
+<!--
+ * Copyright 1999,2004 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+<project name="JDBCAppender" default="zip" basedir="..">
+
+	<target name="init">
+        <echo>Build started!</echo>
+        
+		<property name="version" value="2.1.01"/>
+
+		<property name="jar.name" value="jdbcappender.jar"/>
+		<property name="zip.name" value="jdbcappender.zip"/>
+	
+		<property name="tmp.dir" value="${basedir}/tmp"/>
+		<property name="classes.dir" value="${tmp.dir}\classes"/>
+		<property name="tmp.lib.dir" value="${tmp.dir}\lib"/>
+	
+		<property name="src.dir" value="${basedir}\src"/>
+		<property name="lib.dir" value="${basedir}\lib"/>
+		<property name="javadoc.dir" value="${basedir}\doc"/>
+
+		<property name="license.dir" value="${basedir}"/>
+		<property name="license.name" value="*E.txt"/>
+
+		<!--
+		<property name="log4j.lib.dir" value="D:\Programme\Java\apache\logging\jakarta-log4j-1.2.8\dist\lib"/>
+		-->
+		<property name="log4j.lib.dir" value="d:\data\Danko\projects\logging\logging-log4j"/>
+
+		<property name="build.compiler" value="javac1.3"/>
+		<tstamp>
+			<format property="mytimestamp" pattern="dd.MM.yyyy HH:mm" locale="de"/>
+		</tstamp>
+    </target>
+    
+	<!--
+        Creates the temporary directories required for compilation and
+        the distribution directory for the jar file(s).
+    -->
+	<target name="setup" depends="init">
+		<echo>setup...</echo>
+ 	    <delete dir="${classes.dir}"/>
+    	<delete failonerror="false">
+    	    <fileset dir="${tmp.dir}" includes="**"/>
+    	</delete>
+		<mkdir dir="${tmp.dir}"/>
+		<mkdir dir="${tmp.lib.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+	</target>
+	
+	<!--
+        Deletes all temporary directories created during the setup.
+    -->
+	<target name="cleanup" depends="init">
+		<echo>cleanup...</echo>
+		<delete dir="${tmp.dir}"/>
+	</target>
+
+	<!--
+        compile core components
+    -->
+    <target name="compile" depends="setup">
+    	<echo>compile...</echo>
+        <javac  srcdir="${src.dir}"
+                destdir="${classes.dir}"
+                debug="on"
+                includes="**"
+                excludes="**/examples/**"
+        >
+            <classpath>
+                <fileset id="alllibs" dir="${log4j.lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+    
+	<!--
+        Create the jar file for this component.
+    -->
+	<target name="jar" depends="compile">
+		<echo>jar...</echo>
+		<jar jarfile="${tmp.lib.dir}/${jar.name}"	>
+            <fileset dir="${classes.dir}">
+                <include name="**"/>
+            </fileset>
+            <fileset dir="${license.dir}">
+                <include name="${license.name}"/>
+            </fileset>
+		    <manifest>
+		   		<!-- mostly inline values for easier maintenance -->
+		    	<attribute name="Built-By" value="Danko Mannhaupt (www.mannhaupt.com/danko/)"/>
+		    	<attribute name="Implementation-Title" value="Log4j JDBCAppender"/>
+		    	<attribute name="Implementation-Version" value="${version}"/>
+		    	<attribute name="Implementation-Date" value="${mytimestamp}"/>
+				<attribute name="Implementation-Vendor" value="Danko Mannhaupt (www.mannhaupt.com/danko/)"/>
+				<attribute name="Implementation-URL" value="http://www.mannhaupt.com/danko/projects/"/>
+		    </manifest>
+		</jar>
+	</target>
+
+	<!--
+        Create the zip file for this component.
+    -->
+	<target name="zip" depends="init, jar, javadoc">
+		<echo>zip...</echo>
+	    <copy todir="${lib.dir}" flatten="yes">
+	        <fileset dir="${tmp.lib.dir}">
+	            <include name="${jar.name}"/>
+	        </fileset>
+	    </copy>
+		<zip zipfile="${tmp.lib.dir}/${zip.name}"	>
+            <fileset dir="${basedir}">
+                <include name="build/**"/>
+            </fileset>
+            <fileset dir="${basedir}">
+                <include name="doc/**"/>
+            </fileset>
+            <fileset dir="${basedir}">
+                <include name="src/**"/>
+            </fileset>
+            <fileset dir="${basedir}">
+                <include name="lib/**"/>
+            </fileset>
+            <fileset dir="${license.dir}">
+                <include name="${license.name}"/>
+            </fileset>
+		</zip>
+	    <copy todir="${basedir}">
+	        <fileset dir="${tmp.lib.dir}">
+	            <include name="${zip.name}"/>
+	        </fileset>
+	    </copy>
+	</target>
+
+
+    <!--                
+        create javadoc reference
+    -->    
+    <target name="javadoc" depends="init, compile">
+
+        <copy todir="${tmp.lib.dir}" flatten="yes">
+            <fileset refid="alllibs"/>
+        </copy>
+
+      	<delete>
+      	    <fileset dir="${javadoc.dir}" includes="**/*.*"/>
+      	</delete>
+
+        <javadoc destdir="${javadoc.dir}"
+            Windowtitle="JDBCAppender for Log4j"
+            access="protected" 
+            use="true" 
+            notree="false"
+            nonavbar="false" 
+            noindex="false" 
+            splitindex="true"
+            author="true" 
+            version="true" 
+            bottom="Copyright 2000-2004 Apache Software Foundation." 
+            nodeprecatedlist="false"
+            nodeprecated="false"
+            packagenames="org.apache.log4j.jdbcplus.*"
+            sourcepath="${src.dir}">
+<!--
+            excludepackagenames="org.apache.log4j.jdbcplus.examples.*"
+-->
+            <classpath>
+                <fileset dir="${tmp.lib.dir}">
+                    <include name="**/*.*"/>
+                </fileset>
+                <fileset dir="C:\Programme\Java">
+                    <include name="junit/junit3.8.1/junit.jar"/>
+                    <include name="db\firebird\FirebirdSQL-1.5.0RC2/firebirdsql*.jar"/>
+                </fileset>
+            </classpath>
+
+            <link href="http://java.sun.com/j2se/1.4.2/docs/api/"/>
+            <link href="http://jakarta.apache.org/log4j/docs/api/"/>
+            <link href="http://www.junit.org/junit/javadoc/3.8.1/"/>
+<!--
+            <link href="http://java.sun.com/j2ee/sdk_1.3/techdocs/api/"/>
+            <link href="http://jakarta.apache.org/struts/doc-1.0.2/api/"/>
+            <link href="http://jakarta.apache.org/commons/logging/api/"/>
+            <link href="http://jakarta.apache.org/commons/digester/api/"/>
+-->
+        </javadoc>
+    </target>
+
+</project>

@@ -6,5 +6,9 @@ public class DBMutProxy {
 	public DBMutProxy(Class cut){
 		this.cut = cut;
 	}
+	
+	public static Object createProxy(Object cut){
+		return cut;
+	}
 
 }

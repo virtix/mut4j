@@ -1,0 +1,48 @@
+<!--
+   The PoolingDriver expects PoolableConnectionFactory to be the root of the JOCL document.
+ -->
+<object class="org.apache.commons.dbcp.PoolableConnectionFactory" xmlns="http://apache.org/xml/xmlns/jakarta/commons/jocl">
+   <!--
+      The first argument to PoolableConnectionFactory is a ConnectionFactory.
+      We'll use a DriverManagerConnectionFactory, passing in the appropriate
+      connect string for the underlying driver.
+    -->
+   <object class="org.apache.commons.dbcp.DriverManagerConnectionFactory">
+      <string value="jdbc:mysql://localhost/danko?user=danko&amp;password="/>
+      <object class="java.util.Properties" null="true"/>
+   </object>
+   <!--
+      The next argument is the pool to use.
+    -->
+   <object class="org.apache.commons.pool.impl.GenericObjectPool">
+      <object class="org.apache.commons.pool.PoolableObjectFactory" null="true"/>
+      <int value="10"/> <!-- max active -->
+      <byte value="1"/> <!-- when exhausted action, 0 = fail, 1 = block, 2 = grow -->
+      <long value="2000"/> <!-- max wait -->
+      <int value="10"/> <!-- max idle -->
+      <boolean value="false"/> <!-- test on borrow -->
+      <boolean value="false"/> <!-- test on return -->
+      <long value="10000"/> <!-- time between eviction runs -->
+      <int value="5"/> <!-- number of connections to test per eviction run -->
+      <long value="5000"/> <!-- min evictable idle time -->
+      <boolean value="true"/> <!-- test while idle -->
+   </object>
+   <!--
+      The next argument is the KeyedObjectPoolFactory to use to create pools
+      for storing PreparedStatements.
+    -->
+   <object class="org.apache.commons.pool.impl.StackKeyedObjectPoolFactory">
+      <int value="5"/> <!-- max idle -->
+   </object>
+   <!--
+      The next argument is the query to use to validate that a Connection is
+      still up and running.  It should return at least one row.
+      This functionality is optional. We'll just set it to null.
+    -->
+   <string null="true"/>
+   <!-- <string value="SELECT COUNT(*) FROM DUAL"/> -->
+   <!-- The default "read only" value for Connections. -->
+   <boolean value="false"/>
+   <!-- The default "auto commit" value for Connections. -->
+   <boolean value="false"/>
+</object>

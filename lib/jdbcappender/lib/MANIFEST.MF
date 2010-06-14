@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.1
+Created-By: 1.4.1_01-b01 (Sun Microsystems Inc.)
+Built-By: Danko Mannhaupt (www.mannhaupt.com/danko/)
+Implementation-Title: Log4j JDBCAppender
+Implementation-Version: 2.1.01
+Implementation-Date: 05.06.2005 16:54
+Implementation-Vendor: Danko Mannhaupt (www.mannhaupt.com/danko/)
+Implementation-URL: http://www.mannhaupt.com/danko/projects/
+

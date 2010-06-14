@@ -1,0 +1,5 @@
+select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
+select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
+select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
+select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
+select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 

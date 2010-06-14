@@ -9,11 +9,13 @@ import java.sql.Statement;
 import java.util.logging.Logger;
 
 import net.sf.log4jdbc.ConnectionSpy;
+import net.sf.log4jdbc.DriverSpy;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.PropertyConfigurator;
 import org.jdbcdslog.ConnectionLoggingProxy;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -31,7 +33,7 @@ public class SmokeTest {
 	}
 
 
-	static Logger logger = Logger.getLogger("mut4j");
+	static Logger logger = Logger.getLogger("jdbc");
 	
 	@Before
 	public void init(){
@@ -39,7 +41,7 @@ public class SmokeTest {
 		//BasicConfigurator.configure();	
 	}
 	
-	@Test
+//	@Test
 	public void connectAndRunJDBCDSLog() throws Exception {
 		
 		 Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/", "SA", "");	
@@ -56,7 +58,7 @@ public class SmokeTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void connectAndRunJDBCLog() throws Exception {
 		//jdbc:jdbcdslog:hsqldb:mem:mymemdb;targetDriver=org.hsqldb.jdbcDriver
 		 Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/", "SA", "");	
@@ -67,8 +69,21 @@ public class SmokeTest {
 		 PreparedStatement pstmt = loggingConnection.prepareStatement("select * from example where ID=?");
 		 pstmt.setString(1, "1");
 		 rs = pstmt.executeQuery();
-		 
+		 while (rs.next()){
+			 //logger.info( rs.getString("id") + " : " + rs.getString("data"));
+		 }
 		 
 	}
+	
+	
+	
+	@Test
+	public void complexSQL() throws Exception {
+		Class.forName("net.sf.log4jdbc.DriverSpy");
+		Connection conn = DriverManager.getConnection("jdbc:log4jdbc:hsqldb:hsql://localhost/", "SA", "");	
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from example e, example f where e.id=f.id and (id > 0 OR id < 99);");
+	}
+	
 	
 }

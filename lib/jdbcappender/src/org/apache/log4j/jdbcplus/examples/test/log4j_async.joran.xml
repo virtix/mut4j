@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- This is a Configuration-file example, which can be used with the DOMConfigurator to use the JDBCAppender -->
+<!-- author : Thomas Fenner (t.fenner@klopotek.de) -->
+<!-- update : Danko Mannhaupt (http://www.mannhaupt.com/danko/contact/) -->
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- Declare a appender variable named JDBC, which is a class of JDBCAppender, which writes messages into a database -->
+	<appender name="JDBC" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="connector" value="org.apache.log4j.jdbcplus.examples.FirebirdPoolConnectionHandler" /> 
+		<param name="sqlhandler" value="org.apache.log4j.jdbcplus.examples.SqlHandler" />
+	    <param name="Buffer" value="1"/> 
+    	<param name="Commit" value="true"/>       
+    	<layout class="org.apache.log4j.PatternLayout"> 
+      		<param name="ConversionPattern" value="%m"/> 
+    	</layout>     
+	</appender>
+	
+	<appender name="SYSTEMOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value=" %d{dd.MM.yyyy HH:mm:ss} - %m\n" />
+		</layout>
+	</appender>
+	
+	<appender name="asyncAppenderJDBC" class="org.apache.log4j.AsyncAppender"> 
+   		<param name="BufferSize" value="128"/> 
+   		<appender-ref ref="JDBC"/> 
+ 	</appender>  
+	
+	<appender name="asyncAppenderSYSTEMOUT" class="org.apache.log4j.AsyncAppender"> 
+   		<param name="BufferSize" value="2"/> 
+   		<appender-ref ref="SYSTEMOUT"/> 
+ 	</appender>  
+	
+	<logger name="org.firebird">
+	  <level value="error" />
+  	  <appender-ref ref="asyncAppenderJDBC" />
+	</logger>
+
+	<logger name="org.apache.log4j.jdbcplus.examples">
+	  <level value="debug" />
+  	  <appender-ref ref="JDBC" />
+	</logger>
+
+<!--
+	<root>
+		<level value ="info" />
+		<appender-ref ref="SYSTEMOUT" />
+	</root>
+-->
+	
+</log4j:configuration>
+

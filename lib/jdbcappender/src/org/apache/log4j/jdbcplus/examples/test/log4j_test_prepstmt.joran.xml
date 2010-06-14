@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE log4j:configuration>
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' threshold="info">
+
+	<!-- example using prepared statement configuration -->
+	<appender name="JDBC" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="url" value="jdbc:firebirdsql:localhost/3050:danko"/>
+ 		<param name="dbclass" value="org.firebirdsql.jdbc.FBDriver" /> 
+		<param name="username" value="danko" /> 
+		<param name="password" value="danko" />
+
+		<param name="table" value="logtest" /> 
+		<param name="column" value="id~INC" />
+		<param name="column" value="prio~PRIO" />
+		<param name="column" value="cat~CAT" />
+		<param name="column" value="thread~THREAD" />
+		<param name="column" value="msg~MSG" />
+		<param name="column" value="layout_msg~LAYOUT" />
+		<param name="column" value="throwable~THROWABLE" />
+		<param name="column" value="ndc~NDC" />
+		<param name="column" value="mdc~MDC~MyMDC" />
+		<param name="column" value="mdc2~MDC~MyMDC2" />
+		<param name="column" value="info~TIMESTAMP" />
+		<param name="column" value="addon~EMPTY" />
+		<param name="column" value="the_date~EMPTY" />
+		<param name="column" value="the_time~EMPTY" />
+		<param name="column" value="the_timestamp~EMPTY" />
+		<param name="column" value="created_by~STATIC~me" />
+
+		<param name="usePreparedStatements" value="true" />
+	</appender>
+
+	<!-- example using prepared statement configuration and special handlers -->
+	<appender name="JDBC2" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="url" value="jdbc:firebirdsql:localhost/3050:danko"/>
+ 		<param name="dbclass" value="org.firebirdsql.jdbc.FBDriver" /> 
+		<param name="username" value="danko" /> 
+		<param name="password" value="danko" />
+
+		<param name="table" value="logtest" /> 
+		<!-- custom id handler -->
+		<param name="column" value="id~ID~org.apache.log4j.jdbcplus.examples.MyIDHandler" />
+		<param name="column" value="prio~PRIO" />
+		<param name="column" value="cat~CAT" />
+		<param name="column" value="thread~THREAD" />
+		<param name="column" value="msg~MSG" />
+		<param name="column" value="layout_msg~LAYOUT" />
+		<param name="column" value="throwable~EMPTY" />
+		<!-- refers to pattern definition below -->
+		<param name="column" value="ndc~LAYOUT~1" />
+		<param name="column" value="mdc~LAYOUT~2" />
+		<param name="column" value="mdc2~LAYOUT~3" />
+		<!-- dynamic for this column -->
+		<param name="column" value="info~DYNAMIC~org.apache.log4j.jdbcplus.examples.MyColumnHandler" /> 
+		<param name="column" value="addon~LAYOUT~4" />
+		<param name="column" value="the_date~EMPTY" />
+		<param name="column" value="the_time~EMPTY" />
+		<param name="column" value="the_timestamp~TIMESTAMP" />
+		<param name="column" value="created_by~STATIC~me" />
+
+		<param name="usePreparedStatements" value="true" />
+		<!-- separator for conversion pattern -->
+		<param name="layoutPartsDelimiter" value="#" /> 
+		<!-- layout with conversion pattern -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- conversion pattern with 4 parts separated by #, second and third part contain location information -->
+		  	<param name="ConversionPattern" value="[%t] %m#%C.%M(%F:%L)#%l#%d{dd.MM.yyyy} %d{HH:mm:ss}" /> 
+		</layout>
+	</appender>
+
+	<!-- example using prepared statement configuration to compare with .properties/.sql configuration -->
+	<appender name="JDBC_COMPARE_TEST" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="url" value="jdbc:firebirdsql:localhost/3050:danko"/>
+ 		<param name="dbclass" value="org.firebirdsql.jdbc.FBDriver" /> 
+		<param name="username" value="danko" /> 
+		<param name="password" value="danko" />
+<!--
+		<param name="connector" value="org.apache.log4j.jdbcplus.examples.FirebirdPoolConnectionHandler" />
+-->
+
+		<param name="table" value="logtest" /> 
+		<param name="column" value="id~INC" />
+		<param name="column" value="prio~PRIO" />
+		<param name="column" value="cat~CAT" />
+		<param name="column" value="thread~THREAD" />
+		<param name="column" value="msg~MSG" />
+		<param name="column" value="layout_msg~LAYOUT~1" />
+		<param name="column" value="throwable~THROWABLE" />
+		<param name="column" value="ndc~NDC" />
+		<param name="column" value="mdc~MDC~MyMDC" />
+		<param name="column" value="mdc2~MDC~MyMDC2" />
+		<param name="column" value="info~TIMESTAMP" />
+		<param name="column" value="addon~LAYOUT" />
+		<param name="column" value="the_date~EMPTY" />
+		<param name="column" value="the_time~EMPTY" />
+		<param name="column" value="the_timestamp~EMPTY" />
+		<param name="column" value="created_by~STATIC~me" />
+
+		<param name="usePreparedStatements" value="true" />
+		<!-- layout with conversion pattern -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- conversion pattern with 4 parts separated by #, second is empty -->
+		  	<param name="ConversionPattern" value="[%t] %m##%d{dd.MM.yyyy}#%d{HH:mm:ss}" /> 
+		</layout>
+	</appender>
+
+	<root>
+	    <priority value="info"/>
+		<appender-ref ref="JDBC" />
+		<appender-ref ref="JDBC2" />
+	</root>
+	
+</log4j:configuration>
+

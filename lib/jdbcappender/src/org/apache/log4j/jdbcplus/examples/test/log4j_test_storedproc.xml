@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' threshold="info">
+
+	<!-- example using stored procedures configuration. Requires J2SDK 1.4. Stored Procedure defined in logtest.sql. See below for ORACLE example. -->
+	<appender name="JDBCPROC" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="url" value="jdbc:firebirdsql:localhost/3050:danko"/>
+ 		<param name="dbclass" value="org.firebirdsql.jdbc.FBDriver" /> 
+		<param name="username" value="danko" /> 
+		<param name="password" value="danko" />
+
+		<param name="procedure" value="PROC_INSERT_LOGTEST" /> 
+		
+		<param name="column" value="id~INC" />
+		<param name="column" value="prio~PRIO" />
+		<param name="column" value="iprio~IPRIO" />
+		<param name="column" value="cat~CAT" />
+		<param name="column" value="thread~THREAD" />
+		<param name="column" value="msg~MSG" />
+		<param name="column" value="layout_msg~LAYOUT" />
+		<param name="column" value="throwable~THROWABLE" />
+		<param name="column" value="ndc~NDC" />
+		<param name="column" value="mdc~MDC~MyMDC" />
+		<param name="column" value="mdc2~MDC~MyMDC2" />
+		<param name="column" value="info~TIMESTAMP" />
+		<param name="column" value="addon~EMPTY" />
+		<param name="column" value="the_date~EMPTY" />
+		<param name="column" value="the_time~EMPTY" />
+		<param name="column" value="the_timestamp~EMPTY" />
+		<param name="column" value="created_by~STATIC~me" />
+	</appender>
+
+	<!-- example using stored procedures configuration and special handlers -->
+	<appender name="JDBCPROC2" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="url" value="jdbc:firebirdsql:localhost/3050:danko"/>
+ 		<param name="dbclass" value="org.firebirdsql.jdbc.FBDriver" /> 
+		<param name="username" value="danko" /> 
+		<param name="password" value="danko" />
+
+		<param name="procedure" value="PROC_INSERT_LOGTEST" /> 
+		<!-- custom id handler -->
+		<param name="column" value="id~ID~org.apache.log4j.jdbcplus.examples.MyIDHandler" />
+		<param name="column" value="prio~PRIO" />
+		<param name="column" value="iprio~IPRIO" />
+		<param name="column" value="cat~CAT" />
+		<param name="column" value="thread~THREAD" />
+		<param name="column" value="msg~MSG" />
+		<param name="column" value="layout_msg~LAYOUT" />
+		<param name="column" value="throwable~EMPTY" />
+		<!-- refers to pattern definition below -->
+		<param name="column" value="ndc~LAYOUT~1" />
+		<param name="column" value="mdc~LAYOUT~2" />
+		<param name="column" value="mdc2~LAYOUT~3" />
+		<!-- dynamic for this column -->
+		<param name="column" value="info~DYNAMIC~org.apache.log4j.jdbcplus.examples.MyColumnHandler" /> 
+		<param name="column" value="addon~LAYOUT~4" />
+		<param name="column" value="the_date~EMPTY" />
+		<param name="column" value="the_time~EMPTY" />
+		<param name="column" value="the_timestamp~TIMESTAMP" />
+		<param name="column" value="created_by~STATIC~me" />
+
+		<!-- separator for conversion pattern -->
+		<param name="layoutPartsDelimiter" value="#" /> 
+		<!-- layout with conversion pattern -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- conversion pattern with 4 parts separated by #, second and third part contain location information -->
+		  	<param name="ConversionPattern" value="[%t] %m#%C.%M(%F:%L)#%l#%d{dd.MM.yyyy} %d{HH:mm:ss}" /> 
+		</layout>
+	</appender>
+
+	<!-- example using stored procedures configuration on Oracle 9.x. Requires J2SDK 1.4. Stored Procedure defined in logtest.sql. -->
+	<!-- Manuel configuration of column types and sql types required. 
+		 For names and values see java.sql.Types javadoc. -->
+	<appender name="JDBCPROC_ORACLE" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="url" value="jdbc:oracle:thin:@dbottae3.csservice.arvato-systems.de:1481:DBOTTAE3"/>
+ 		<param name="dbclass" value="oracle.jdbc.driver.OracleDriver" /> 
+		<param name="username" value="taet." /> 
+		<param name="password" value="taet....." />
+
+		<param name="procedure" value="PROC_INSERT_LOGTEST" /> 
+		
+		<param name="column" value="id~INC~ ~INTEGER~4" />
+		<param name="column" value="prio~PRIO~ ~VARCHAR~12" />
+		<param name="column" value="iprio~IPRIO~ ~DECIMAL~3" />
+		<param name="column" value="cat~CAT~ ~VARCHAR~12" />
+		<param name="column" value="thread~THREAD~ ~VARCHAR~12" />
+		<param name="column" value="msg~MSG~ ~VARCHAR~12" />
+		<param name="column" value="layout_msg~LAYOUT~1~VARCHAR~12" />
+		<param name="column" value="throwable~THROWABLE~ ~VARCHAR~12" />
+		<param name="column" value="ndc~NDC~ ~VARCHAR~12" />
+		<param name="column" value="mdc~MDC~MyMDC~VARCHAR~12" />
+		<param name="column" value="mdc2~MDC~MyMDC2~VARCHAR~12" />
+		<param name="column" value="info~TIMESTAMP~ ~VARCHAR~12" />
+		<param name="column" value="addon~STATIC~addon~VARCHAR~12" />
+		<param name="column" value="the_timestamp~TIMESTAMP~ ~TIMESTAMP~93" />
+		<param name="column" value="created_by~STATIC~me~VARCHAR~12" />
+	</appender>
+
+	<root>
+	    <priority value="info"/>
+		<appender-ref ref="JDBCPROC" />
+		<appender-ref ref="JDBCPROC2" />
+	    <!--
+		<appender-ref ref="JDBCPROC_ORACLE" />
+		-->
+	</root>
+	
+</log4j:configuration>
+

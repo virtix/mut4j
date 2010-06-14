@@ -1,0 +1,15 @@
+This product includes software developed by
+The Apache Software Foundation (http://www.apache.org/).
+
+
+Log4j JDBCAppender 
+
+- Maintained by Danko Mannhaupt (www.mannhaupt.com/danko/projects/)
+- Initially developed by Thomas Fenner
+- Version: See /lib/jdbcappender.jar/META-INF/MANIFEST.MF for version information
+- Support: See www.mannhaupt.com/danko/projects/
+- Forum: www.mannhaupt.com/forum/
+- Contact: www.mannhaupt.com/danko/contact/
+
+Notes:
+- Source may not compile completely because there is one dependency on Log4j 1.3 in JoranConfiguratorTest

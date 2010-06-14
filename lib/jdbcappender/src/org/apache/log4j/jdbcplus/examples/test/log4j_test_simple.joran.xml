@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE log4j:configuration>
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' threshold="info">
+
+	<appender name="SYSTEMOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value=" %d{dd.MM.yyyy HH:mm:ss} - %m\n" />
+		</layout>
+	</appender>
+
+	<appender name="JDBC" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<!-- 
+		<param name="url" value="jdbc:postgresql://127.0.0.1:5432/pure_logs"/>
+ 		<param name="dbclass" value="org.postgresql.Driver" /> 
+ 		-->
+		<param name="url" value="jdbc:firebirdsql:localhost/3050:danko"/>
+ 		<param name="dbclass" value="org.firebirdsql.jdbc.FBDriver" /> 
+		<param name="username" value="danko" /> 
+		<param name="password" value="danko" />
+		<param name="sql" value="INSERT INTO LOGTEST (id, msg, cat, prio, the_timestamp, created_by) VALUES (@INC@, '@MSG@', '@CAT@', '@PRIO@', CURRENT_TIMESTAMP, 'pure_logs')" /> 
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m"/>
+		</layout>
+	</appender>
+
+	<root>
+	    <priority value="info"/>
+		<!-- appender-ref ref="SYSTEMOUT" /> -->
+		<appender-ref ref="JDBC" />
+	</root>
+	
+</log4j:configuration>
+
