@@ -8,8 +8,8 @@
 	<classpathentry kind="lib" path="lib/slf4j-1.6.0/slf4j-api-1.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-1.6.0/slf4j-log4j12-1.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4jdbc-1.2beta2/build/log4jdbc4-1.2beta2.jar"/>
-	<classpathentry kind="lib" path="src/mu/log4j.properties"/>
-	<classpathentry kind="lib" path="src/mu/log4jdbc.properties"/>
+	<classpathentry kind="lib" path="src/edu/gmu/mut4j/log4j.properties"/>
+	<classpathentry kind="lib" path="src/edu/gmu/mut4j/log4jdbc.properties"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
