@@ -1,0 +1,5 @@
+h1. mut4j, working name for _Mutation for Java_
+
+This is a research project based on mutation testing. Specifically, this focuses on database mutation testing.
+
+Please see an Introduction to Software Testing by  Ammann and Offutt for details. Likewise, formal literature exists that discusses this approach.
