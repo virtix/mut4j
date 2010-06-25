@@ -1,5 +1,5 @@
-2010-06-14 08:22:45.002 1. Connection.new Connection returned 
-2010-06-14 08:22:45.006 1. Statement.new Statement returned 
-2010-06-14 08:22:45.006 1. Connection.createStatement() returned net.sf.log4jdbc.StatementSpy@77f297e7
-2010-06-14 08:22:45.013 1. ResultSet.new ResultSet returned 
-2010-06-14 08:22:45.013 1. Statement.executeQuery(select * from example e, example f where e.id=f.id and (id > 0 OR id < 99);) returned net.sf.log4jdbc.ResultSetSpy@7f70888e
+2010-06-17 21:02:22.325 2. Connection.new Connection returned   java.sql.DriverManager.getConnection(DriverManager.java:620)
+2010-06-17 21:02:22.325 2. Statement.new Statement returned   edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:51)
+2010-06-17 21:02:22.325 2. Connection.createStatement() returned net.sf.log4jdbc.StatementSpy@44a613f8  edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:51)
+2010-06-17 21:02:22.327 2. ResultSet.new ResultSet returned   edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:52)
+2010-06-17 21:02:22.327 2. Statement.executeQuery(select * from example e, example f where e.id=f.id and (id > 0 OR id < 99) or (id=1 and id > 0);) returned net.sf.log4jdbc.ResultSetSpy@736921fd  edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:52)

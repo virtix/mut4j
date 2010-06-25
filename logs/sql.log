@@ -6,3 +6,18 @@ select * from example e, example f where e.id=f.id and (id > 0 OR id < 99);
 select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
 select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
 select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
+select * from example e, example f where e.id=f.id and (id > 0 OR id < 99); 
+ edu.gmu.mut4j.JDBCLogTest.connectAndRunJDBCLog(JDBCLogTest.java:35)
+1. select * from example where 1=1 
+ edu.gmu.mut4j.JDBCLogTest.connectAndRunJDBCLog(JDBCLogTest.java:38)
+1. select * from example where ID='1' 
+ edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:52)
+2. select * from example e, example f where e.id=f.id and (id > 0 OR id < 99) or (id=1 and id 
+> 0); 
+ edu.gmu.mut4j.JDBCLogTest.connectAndRunJDBCLog(JDBCLogTest.java:35)
+1. select * from example where 1=1 
+ edu.gmu.mut4j.JDBCLogTest.connectAndRunJDBCLog(JDBCLogTest.java:38)
+1. select * from example where ID='1' 
+ edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:52)
+2. select * from example e, example f where e.id=f.id and (id > 0 OR id < 99) or (id=1 and id 
+> 0); 

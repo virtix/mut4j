@@ -1,3 +1,4 @@
------> 2010-06-14 08:22:45.010  edu.gmu.mut4j.SmokeTest.complexSQL(SmokeTest.java:85)
-1. select * from example e, example f where e.id=f.id and (id > 0 OR id < 99);  {executed in 4 msec}
+-----> 2010-06-17 21:02:22.327  edu.gmu.mut4j.JDBCLogTest.complexSQL(JDBCLogTest.java:52)
+2. select * from example e, example f where e.id=f.id and (id > 0 OR id < 99) or (id=1 and id 
+> 0);  {executed in 0 msec}
 
